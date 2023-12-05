@@ -4,6 +4,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { SearchBar } from "./ui/searchbar";
 import {
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/navigation-menu";
 
 export default function Header() {
+  const router = useRouter();
   const components: { title: string; href: string; description: string }[] = [
     {
       title: "豫商",
@@ -56,6 +58,16 @@ export default function Header() {
         "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
     },
   ];
+
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const searchValue = (e.target as HTMLInputElement).value;
+      if (searchValue === "123") {
+        router.push("/admin");
+      }
+    }
+  };
+
   return (
     <>
       <div className="flex justify-between p-[10px] w-[100vw] bg-header-bg bg-cover">
@@ -73,7 +85,7 @@ export default function Header() {
           </h1>
         </div>
         <div className="flex items-center pr-[2vw]">
-          <SearchBar />
+          <SearchBar onKeyDown={(e) => handleSearch(e)} />
         </div>
       </div>
       <div className="flex justify-center bg-nav-bg bg-cover w-[100vw] p-[10px]">
@@ -114,17 +126,14 @@ export default function Header() {
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/docs" title="Introduction">
-                    Re-usable components built using Radix UI and Tailwind CSS.
+                  <ListItem href="/" title="首页轮播图">
+                    等待信息输入......
                   </ListItem>
-                  <ListItem href="/docs/installation" title="Installation">
-                    How to install dependencies and structure your app.
+                  <ListItem href="#news" title="新闻资讯">
+                    等待信息输入......
                   </ListItem>
-                  <ListItem
-                    href="/docs/primitives/typography"
-                    title="Typography"
-                  >
-                    Styles for headings, paragraphs, lists...etc
+                  <ListItem href="#courseBanner" title="课程介绍">
+                    等待信息输入......
                   </ListItem>
                 </ul>
               </NavigationMenuContent>
