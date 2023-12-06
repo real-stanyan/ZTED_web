@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { SearchBar } from "./ui/searchbar";
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -23,39 +24,34 @@ export default function Header() {
   const router = useRouter();
   const components: { title: string; href: string; description: string }[] = [
     {
-      title: "豫商",
-      href: "/docs/primitives/alert-dialog",
-      description:
-        "A modal dialog that interrupts the user with important content and expects a response.",
+      title: "企业转型升级领导力提升高级研修班",
+      href: "/courses/gaojiyanxui",
+      description: "等待课程简介输入...",
     },
     {
-      title: "Hover Card",
-      href: "/docs/primitives/hover-card",
-      description:
-        "For sighted users to preview content available behind a link.",
+      title: "国学研修班",
+      href: "/courses/guoxueyanxui",
+      description: "等待课程简介输入...",
     },
     {
-      title: "Progress",
-      href: "/docs/primitives/progress",
-      description:
-        "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      title: "普陀山·觉醒",
+      href: "/courses/putuoshan",
+      description: "等待课程简介输入...",
     },
     {
-      title: "Scroll-area",
-      href: "/docs/primitives/scroll-area",
-      description: "Visually or semantically separates content.",
+      title: "南美商务研学之旅",
+      href: "/courses/nanmei",
+      description: "等待课程简介输入...",
     },
     {
-      title: "Tabs",
-      href: "/docs/primitives/tabs",
-      description:
-        "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      title: "敬请期待",
+      href: "/un",
+      description: "等待课程简介输入...",
     },
     {
-      title: "Tooltip",
-      href: "/docs/primitives/tooltip",
-      description:
-        "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      title: "敬请期待",
+      href: "/un",
+      description: "等待课程简介输入...",
     },
   ];
 
@@ -70,8 +66,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="flex justify-between p-[10px] w-[100vw] bg-header-bg bg-cover">
-        <div className="min-w-[10vw]"></div>
+      <div className="flex justify-center items-center p-[10px] w-[100vw] bg-header-bg bg-cover">
         <div className="flex items-center">
           <Image
             src={"/zted_icon.png"}
@@ -84,7 +79,15 @@ export default function Header() {
             海南志途教育科技有限公司
           </h1>
         </div>
-        <div className="flex items-center pr-[2vw]">
+        <div className="flex absolute right-2">
+          <Button
+            variant="outline"
+            className="bg-[#8e0804] text-[white] mr-[1vw]"
+            onClick={() => router.push("/user")}
+          >
+            用户登陆
+          </Button>
+
           <SearchBar onKeyDown={(e) => handleSearch(e)} />
         </div>
       </div>
@@ -148,7 +151,9 @@ export default function Header() {
             </NavigationMenuItem>
             {/* 课程介绍 */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger>课程介绍</NavigationMenuTrigger>
+              <NavigationMenuTrigger onClick={() => router.push("/courses")}>
+                课程介绍
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                   {components.map((component) => (
@@ -173,7 +178,7 @@ export default function Header() {
             </NavigationMenuItem>
             {/* 课程报名 */}
             <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
+              <Link href="/enroll" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   课程报名
                 </NavigationMenuLink>
