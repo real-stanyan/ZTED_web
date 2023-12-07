@@ -5,7 +5,7 @@ export default function CourseIntro() {
   return (
     <div
       id="courseBanner"
-      className="w-[100vw] h-[50vh] md:h-[100vh] flex overflow-hidden flex-nowrap"
+      className="w-[100vw] h-[40vh] md:h-[100vh] flex overflow-hidden flex-nowrap"
     >
       {/* 1 */}
       <div className="hidden md:flex flex-col justify-center items-center p-[3vw]">

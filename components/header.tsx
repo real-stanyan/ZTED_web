@@ -156,7 +156,7 @@ export default function Header() {
             </NavigationMenuItem>
             {/* 关于我们 */}
             <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
+              <Link href="/aboutus" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   关于我们
                 </NavigationMenuLink>
@@ -229,16 +229,16 @@ export default function Header() {
               <DropdownMenuItem onClick={() => router.push("/")}>
                 首页
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push("/")}>
+              <DropdownMenuItem onClick={() => router.push("/aboutus")}>
                 关于我们
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push("/")}>
+              <DropdownMenuItem onClick={() => router.push("/courses")}>
                 课程介绍
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => router.push("/")}>
                 新闻与活动
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push("/")}>
+              <DropdownMenuItem onClick={() => router.push("/enroll")}>
                 课程报名
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => router.push("/")}>
