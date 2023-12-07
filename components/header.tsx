@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { BiMenu } from "react-icons/bi";
 
 import { SearchBar } from "./ui/searchbar";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,14 @@ import {
   NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
   const router = useRouter();
@@ -66,7 +75,8 @@ export default function Header() {
 
   return (
     <>
-      <div className="flex justify-center items-center p-[10px] w-[100vw] bg-header-bg bg-cover">
+      {/* header for Desktop */}
+      <div className="hidden md:flex justify-center items-center p-[10px] w-[100vw] bg-header-bg bg-cover">
         <div className="flex items-center">
           <Image
             src={"/zted_icon.png"}
@@ -91,12 +101,15 @@ export default function Header() {
           <SearchBar onKeyDown={(e) => handleSearch(e)} />
         </div>
       </div>
-      <div className="flex justify-center bg-nav-bg bg-cover w-[100vw] p-[10px]">
+      {/* nav links for Desktop */}
+      <div className="hidden md:flex justify-center bg-nav-bg bg-cover w-[100vw] p-[10px]">
         <NavigationMenu>
           <NavigationMenuList>
             {/* 首页 */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger>首页</NavigationMenuTrigger>
+              <NavigationMenuTrigger onClick={() => router.push("/")}>
+                首页
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
@@ -194,6 +207,46 @@ export default function Header() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+      </div>
+      {/* header for Mobile */}
+      <div className="flex justify-between md:hidden p-[2vw] bg-header-bg bg-cover">
+        <Image
+          src={"/zted_icon.png"}
+          alt="header icon"
+          height={1000}
+          width={1000}
+          className="w-[12vw]"
+        />
+        <div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                {/* Mobile Header Menu */}
+                <BiMenu size="20" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => router.push("/")}>
+                首页
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/")}>
+                关于我们
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/")}>
+                课程介绍
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/")}>
+                新闻与活动
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/")}>
+                课程报名
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/")}>
+                联系我们
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </>
   );

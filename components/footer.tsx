@@ -3,9 +3,8 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <div>
-      <div></div>
       {/* Footer底部 */}
-      <div className="flex justify-evenly items-center p-[1vw] text-[white] bg-[#860705]">
+      <div className="flex-col md:flex-row flex justify-evenly items-center p-[1vw] text-[3vw] md:text-[1vw] text-[white] bg-[#860705] whitespace-nowrap">
         {/* 版权 */}
         <h1 className="font-formal md:text-[1vw]">
           版权所有©海南志途教育科技有限公司

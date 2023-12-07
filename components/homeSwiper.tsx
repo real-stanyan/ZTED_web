@@ -17,7 +17,8 @@ export default function HomeSwiper() {
   return (
     <>
       <Swiper
-        style={{ maxWidth: "100vw", height: "90vh", overflow: "hidden" }}
+        // style={{ maxWidth: "100vw", height: "90vh", overflow: "hidden" }}
+        className="max-w-[100vw] h-[30vh] md:h-[90vh] overflow-hidden"
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
@@ -26,10 +27,11 @@ export default function HomeSwiper() {
         }}
         pagination={{
           clickable: true,
-          type:
-            typeof window !== "undefined" && window.innerWidth <= 768
-              ? "fraction"
-              : "bullets",
+          type: "progressbar",
+          // type:
+          //   typeof window !== "undefined" && window.innerWidth <= 768
+          //     ? "progressbar"
+          //     : "bullets",
         }}
         navigation={false}
         modules={[Autoplay, Pagination, Navigation]}
