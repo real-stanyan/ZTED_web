@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function Culture() {
   const [shown, setShown] = useState("河南地理位置");
@@ -139,7 +140,10 @@ export default function Culture() {
         {shown}
       </div>
       {/* 河南地理位置 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0 md:md:pl-[300px] md:pr-[80px] mb-[5vw] flex flex-col justify-center items-center overflow-hidden "
         ref={geoRef}
         title="河南地理位置"
@@ -160,9 +164,12 @@ export default function Culture() {
         <p className="text-[2vw] md:text-[1vw]">
           从地理位置上看，豫州居于九州的中心地带，所以河南又被称为“中州”、“中原”。长期以来，河南一直是中国政治经济文化的中心，对华夏文化的形成和发展做出了重要的贡献。这当中，就包括目前在国内外影响越来越大的豫商精神。
         </p>
-      </div>
+      </motion.div>
       {/* 河南历史渊源 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={historyRef}
         title="河南历史渊源"
@@ -184,9 +191,12 @@ export default function Culture() {
           中原大地孕育的风流人物灿若群星，如古代哲学家、思想家老子、庄子、墨子、韩非、程颐、程颢，政治家、军事家姜子牙、商鞅、苏秦、李斯、刘秀、张良、司马懿、岳飞，文学家、艺术家杜甫、韩愈、白居易、李贺、李商隐、司马光、褚遂良、吴道子，科学家张衡、僧一行，医学家张仲景，佛学家玄奘等，还有现当代史上的抗日英雄吉鸿昌、杨靖宇，革命先辈邓颖超、彭雪枫、吴焕先、许世友，“县委书记的榜样”焦裕禄等。
           　“万姓同根，万宗同源”。河南是中华姓氏的重要发源地，当今的300个大姓中根在河南的有171个，依人口数量多少而排列的100个大姓中有78个姓氏的源头或部分源头在河南，有“陈林半天下，黄郑排满街”之称的海外四大姓氏均起源于河南。
         </p>
-      </div>
+      </motion.div>
       {/* 河南山水胜景 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={spotRef}
         title="河南山水胜景"
@@ -207,9 +217,12 @@ export default function Culture() {
         <p className="text-[2vw] md:text-[1vw]">
           全省共有A级景区580家，其中5A级景区14家，4A级以上景区189家。星级酒店383家，其中五星级酒店21家；云台山景区、尧山大佛景区、嵖岈山景区、淇河生态旅游区为国家生态旅游示范区。嵩山、白云山、鸡公山、王屋山、尧山、太行大峡谷、宝天曼、老界岭、云梦山、南湾湖、丹江口等均属山水奇观。龙门石窟是首批国家旅游示范单位，被评为“中国人文旅游示范基地”。黄河自西向东流经河南七百余公里，郑州至开封段由于泥沙淤积，河床平均高出两岸地面3—5米，形成“地上悬河”的独特自然景观，可谓“河从屋顶过，船在空中行”。“人工天河”红旗渠被誉为世界第八大奇迹，是国家首批“全国研学旅游示范基地”。
         </p>
-      </div>
+      </motion.div>
       {/* 为什么河南会被视为中国人的老家 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={hometownRef}
         title="中国人的老家"
@@ -266,9 +279,12 @@ export default function Culture() {
           在夏朝、商朝、周朝之后，以河南为代表的中原地区，依然是全国政治、经济、文化的中心。
           那时候，中国被分为九州，即：冀州、兖州、青州、徐州、扬州、荆州、豫州、梁州和雍州。豫州因位于九州之中，被称为“中州”。豫州，就包含了今天河南省的大部分地区。后来，这一片土地，被称为“国中之地”，由此而产生了“中国”“中华”等概念。
         </p>
-      </div>
+      </motion.div>
       {/* 老家河南 华夏儿女的心灵故乡 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={hometown2Ref}
         title="老家河南"
@@ -302,9 +318,12 @@ export default function Culture() {
         <p className="text-[2vw] md:text-[1vw]">
           这里是华夏儿女的心灵故乡。历史上曾发生多次中原人口外迁，带去了先进的文化思想、生产技术和生活方式，他们“筚路蓝缕，以启山林”，与当地住民一道，为社会发展作出了贡献。如今遍布世界各地的1亿多客家人始终称自己为“河洛郎”。每年的农历三月初三，在新郑举行黄帝故里拜祖大典，成千上万的华夏儿女都会齐聚轩辕丘寻根拜祖，追思华夏儿女共同的血脉根源。
         </p>
-      </div>
+      </motion.div>
       {/* 忠勇河南 民族大义的担当奉献 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={zhiyongRef}
         title="忠勇河南"
@@ -353,9 +372,12 @@ export default function Culture() {
           height={2000}
           className="  h-[auto] w-[30vw] mx-auto my-[6vw] md:my-[3vw]"
         />
-      </div>
+      </motion.div>
       {/* 厚道河南 绵延亘久的性格密码 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={houdaoRef}
         title="厚道河南"
@@ -390,9 +412,12 @@ export default function Culture() {
           到了当代，河南村官李连成用自己的吃亏换来了濮阳西辛庄村全体父老乡亲的幸福生活，被乡亲们称为“吃亏书记”。南阳淅川县自1950年代修建丹江口水库起，先后有20.2万移民历时20年、分6批迁往青海、湖北、河南其他地方；2003年以后，随着南水北调中线工程开建，淅川县再次搬迁16.5万移民；为了实现“一泓清水送京津”，广大移民舍弃故土，泣别亲友，举家搬迁。
           今年新冠肺炎疫情发生后，河南作为与湖北山水相连的人口大省、劳务输出大省，不仅在自身防疫中被誉为“硬核河南”，而且在医疗资源紧缺的情况下，秉承“先人后己”“无私奉献”的厚道理念，先后派出15批医疗队、1281名白衣战士，携带紧缺物资驰援湖北。社会各界纷纷捐款捐物，洛阳嵩县竹园沟村300多名贫困群众3天时间从自家地里拔了10万斤大葱，第一时间捐往武汉。全省企业加班加点，尽全力保障各类物资供应。河南虽然是卫材大省，为了倾力支援全国抗疫，本省信阳、南阳等防疫重点市的医疗防护物资紧缺，多次告急。每一个河南人都在用自己的行动书写着河南人的淳朴和善良，充分体现了河南人的厚道品质。
         </p>
-      </div>
+      </motion.div>
       {/* 奋斗河南 人杰地灵的淳风沃土 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={fendouRef}
         title="奋斗河南"
@@ -433,9 +458,12 @@ export default function Culture() {
         <p className="text-[2vw] md:text-[1vw]">
           新的时期，中原儿女在这片土地上砥砺奋进、续写辉煌。这里有“全国农村党支部书记的榜样”史来贺、“全国乡镇党委书记的榜样”吴金印、“全国十大女杰”刘志华、“当代愚公”张荣锁、“最美村官”裴春亮等一批先进典型；有获得18个乒乓球世界冠军、首位大满贯获得者邓亚萍；中国首位女航天员、“时代先锋”刘洋；发明了“王码五笔字型”汉字输入法、解决汉字输入难题的“改革先锋”王永民；有成千上万服务全国的人民公仆，有众多勇立潮头的知名企业家、创新创业人员，还有更多普通劳动者在平凡的岗位上无私奉献、默默耕耘，用辛勤和汗水描绘着一个个出彩人生。
         </p>
-      </div>
+      </motion.div>
       {/* 红色河南 薪火传承的伟大精神 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={hongseRef}
         title="红色河南"
@@ -486,9 +514,12 @@ export default function Culture() {
         <p className="text-[2vw] md:text-[1vw]">
           这里有红旗渠精神，“自力更生、艰苦创业、团结协作、无私奉献”。林县县委书记杨贵带领十万林县人民苦战十个春秋，克服了难以想象的困难，一锤一凿地凿穿太行山，建成了一条全长1500公里的“人工天河”红旗渠，解决了全县人民世世代代难以解决的用水问题。这些伟大精神是我们的宝贵财富，历久弥新、催人奋进、永不过时。
         </p>
-      </div>
+      </motion.div>
       {/* 大美河南 诗和远方的神奇交融 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={dameiRef}
         title="大美河南"
@@ -539,9 +570,12 @@ export default function Culture() {
         <p className="text-[2vw] md:text-[1vw]">
           全省有5A级景区14处、A级景区525处。河南的人文景观丰富厚重。河南有国家重点文物保护单位420处，地上文物、地下文物数量均居全国前列，被誉为“天然的中华历史博物馆”；中国八大古都河南有其四：洛阳、开封、安阳、郑州；有洛阳龙门石窟、登封“天地之中”历史建筑群、安阳殷墟、丝绸之路河南段、大运河河南段等5项世界文化遗产；有得天独厚的宗教旅游资源，中国佛教祖庭白马寺、禅宗祖庭少林寺、千年古刹相国寺天下闻名；在海内外广受欢迎的少林功夫和太极拳均源自河南。
         </p>
-      </div>
+      </motion.div>
       {/* 出彩河南 谱写新时代绚丽篇章 */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
         className="w-full p-[10px] md:p-0   md:md:pl-[300px] md:pr-[80px] flex flex-col justify-center items-center overflow-hidden   "
         ref={chucaiRef}
         title="出彩河南"
@@ -592,7 +626,7 @@ export default function Culture() {
         <p className="text-[2vw] md:text-[1vw]">
           中原大地，风鹏正举。滚滚黄河，不惧山阻石拦，奔腾不息入大海；巍巍嵩山，历经沧海桑田，雄峙中原展新姿。我们将以习近平新时代中国特色社会主义思想为指导，在省委、省政府坚强领导下，团结拼搏、开拓进取，担当作为、砥砺奋进，谱写新时代中原更加出彩的绚丽篇章！
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 }
