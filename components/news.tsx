@@ -15,7 +15,7 @@ export default function News() {
         id="news"
         className="w-[100vw] h-[50vh] md:h-[100vh] p-[8vw] md:p-[10vw] hidden md:flex justify-center items-center"
       >
-        <div className="grid grid-cols-2 grid-rows-2 gap-2 md:gap-12 w-[80vw] h-[80%] md:h-[70vh]">
+        <div className="grid grid-cols-2 grid-rows-2 gap-2 md:gap-12 w-[80vw] h-[80%] md:h-[80vh]">
           {/* 第一行的轮播图 */}
           <motion.div
             initial={{ opacity: 0, y: -200 }}
@@ -36,7 +36,7 @@ export default function News() {
               (news, index) => (
                 <div
                   key={index}
-                  className="border-b-4 border-[#A92428] bg-white shadow-lg p-[20px] relative"
+                  className="border-b-4 border-[#A92428] bg-white shadow-lg p-[20px] relative overflow-hidden"
                 >
                   <h1>{news.content}</h1>
                   <span className="absolute bottom-1 right-1">{news.time}</span>

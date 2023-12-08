@@ -36,15 +36,11 @@ export default function User() {
     confirmPassword: "",
   });
 
-  useEffect(() => {
-    console.log(email);
-    console.log(username);
-  }, [email, username]);
-
   // 用户登陆
   const handleLogin = async () => {
     const res = await userLogin(login);
     console.log(res);
+    // 200:"用户登陆成功"
     if (res.status === 200) {
       setEmail(res.email);
       setName(res.Username);
@@ -52,11 +48,28 @@ export default function User() {
         title: `欢迎回来，${res.Username}老板`,
       });
     }
+    // 404:"邮箱不存在，请重新输入或注册"
     if (res.status === 404) {
       toast({
         variant: "destructive",
         title: "登陆失败",
         description: "账户不存在",
+      });
+    }
+    // 429:"请一分钟后再尝试"
+    if (res.status === 429) {
+      toast({
+        variant: "destructive",
+        title: "登陆失败",
+        description: "请一分钟后再尝试",
+      });
+    }
+    // 400:"邮箱或密码输入错误，请重新输入"
+    if (res.status === 400) {
+      toast({
+        variant: "destructive",
+        title: "登陆失败",
+        description: "邮箱或密码输入错误",
       });
     }
   };
