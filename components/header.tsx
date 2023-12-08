@@ -1,11 +1,15 @@
 "use client";
 
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { BiMenu } from "react-icons/bi";
+import { FaUser } from "react-icons/fa";
+
+import useUser from "@/stores/useUser";
 
 import { SearchBar } from "./ui/searchbar";
 import { Button } from "@/components/ui/button";
@@ -31,6 +35,9 @@ import {
 
 export default function Header() {
   const router = useRouter();
+  const [isLogin, setIsLogin] = useState(false);
+  const username = useUser((state) => state.username);
+  const { userLogout } = useUser();
   const components: { title: string; href: string; description: string }[] = [
     {
       title: "企业转型升级领导力提升高级研修班",
@@ -64,6 +71,14 @@ export default function Header() {
     },
   ];
 
+  useEffect(() => {
+    if (username !== "") {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [username]);
+
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const searchValue = (e.target as HTMLInputElement).value;
@@ -90,13 +105,43 @@ export default function Header() {
           </h1>
         </div>
         <div className="flex absolute right-2">
-          <Button
-            variant="outline"
-            className="bg-[#8e0804] text-[white] mr-[1vw]"
-            onClick={() => router.push("/user")}
-          >
-            用户登陆
-          </Button>
+          {/* user dropmenu for Desktop */}
+          {isLogin && (
+            <div className="flex items-center mr-[1vw]">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="w-[5vw] p-[1vw]"
+                  >
+                    <FaUser size="15" />
+                    <h1 className="ml-[8px]">{username}</h1>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      userLogout();
+                    }}
+                  >
+                    退出登陆
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          )}
+
+          {/* user login button for Desktop */}
+          {!isLogin && (
+            <Button
+              variant="outline"
+              className="bg-[#8e0804] text-[white] mr-[1vw]"
+              onClick={() => router.push("/user")}
+            >
+              用户登陆
+            </Button>
+          )}
 
           <SearchBar onKeyDown={(e) => handleSearch(e)} />
         </div>
@@ -217,7 +262,15 @@ export default function Header() {
           width={1000}
           className="w-[12vw]"
         />
-        <div>
+        <div className="flex items-center">
+          <Button
+            variant="outline"
+            size="icon"
+            className="mr-[1vw]"
+            onClick={() => router.push("/user")}
+          >
+            <FaUser size="15" />
+          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
