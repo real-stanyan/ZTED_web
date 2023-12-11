@@ -32,6 +32,7 @@ export default function Admin() {
   const { userLogout } = useUser();
   // const adminName = useAdmin((state) => state.username);
   const { setEmail, setName, setPosition } = useAdmin();
+  const adminName = useAdmin((state) => state.admin.username);
   const { toast } = useToast();
   const router = useRouter();
   const [login, setlogin] = useState<AdminLogin>({
@@ -49,6 +50,9 @@ export default function Admin() {
   // logout user when enter admin page
   useEffect(() => {
     userLogout();
+    if (adminName !== "") {
+      router.push("/admin/dashboard");
+    }
   }, []);
 
   // 处理管理员登陆

@@ -38,8 +38,8 @@ export default function Header() {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const username = useUser((state) => state.username);
-  const adminName = useAdmin((state) => state.username);
+  const username = useUser((state) => state.user.username);
+  const adminName = useAdmin((state) => state.admin.username);
   const { userLogout } = useUser();
   const { adminLogout } = useAdmin();
   const components: { title: string; href: string; description: string }[] = [

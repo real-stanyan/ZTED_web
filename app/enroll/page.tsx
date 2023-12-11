@@ -25,7 +25,7 @@ import { enroll } from "@/services/enroll";
 
 export default function Enroll() {
   const { toast } = useToast();
-  const email = useUser((state) => state.email);
+  const email = useUser((state) => state.user.email);
   const [userinfo, setUserinfo] = useState<UserInfo>({
     registerEmail: email || "",
     name: "",

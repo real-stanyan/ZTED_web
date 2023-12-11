@@ -4,21 +4,51 @@ import { persist } from "zustand/middleware";
 const useAdmin = create(
   persist(
     (set) => ({
-      email: "",
-      username: "",
-      position: "",
-
+      admin: {
+        email: "",
+        username: "",
+        position: "",
+      },
+      // 设置admin邮箱
       setEmail(email) {
-        set({ email });
+        set((state) => ({
+          ...state,
+          admin: {
+            ...state.admin,
+            email: email,
+          },
+        }));
       },
+      // 设置admin用户名
       setName(username) {
-        set({ username });
+        set((state) => ({
+          ...state,
+          admin: {
+            ...state.admin,
+            username: username,
+          },
+        }));
       },
+      // 设置admin权限
       setPosition(position) {
-        set({ position });
+        set((state) => ({
+          ...state,
+          admin: {
+            ...state.admin,
+            position: position,
+          },
+        }));
       },
+      // admin登出
       adminLogout() {
-        set({ email: "", username: "", position: "" });
+        set((state) => ({
+          ...state,
+          admin: {
+            email: "",
+            username: "",
+            position: "",
+          },
+        }));
       },
     }),
     {
