@@ -41,54 +41,6 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { getRegisterForm, deleteRegsiter } from "@/services/registerForm";
 import useAdmin from "@/stores/useAdmin";
-// //表单数据
-// const data: RegisterForm[] = [
-//   {
-//     id: "m5gr84i9",
-//     companyName: "m5gr84i9",
-//     name: "success",
-//     email: "ken99@yahoo.com",
-//     position: "success",
-//     annualRevenue: "success",
-//     classType: "success",
-//   },
-//   {
-//     id: "3u1reuv4",
-//     companyName: "m5gr84i9",
-//     name: "success",
-//     email: "Abe45@gmail.com",
-//     position: "success",
-//     annualRevenue: "success",
-//     classType: "success",
-//   },
-//   {
-//     id: "derv1ws0",
-//     companyName: "m5gr84i9",
-//     name: "processing",
-//     email: "Monserrat44@gmail.com",
-//     position: "success",
-//     annualRevenue: "success",
-//     classType: "success",
-//   },
-//   {
-//     id: "5kma53ae",
-//     companyName: "m5gr84i9",
-//     name: "success",
-//     email: "Silas22@gmail.com",
-//     position: "success",
-//     annualRevenue: "success",
-//     classType: "success",
-//   },
-//   {
-//     id: "bhqecj4p",
-//     companyName: "m5gr84i9",
-//     name: "failed",
-//     email: "carmella@hotmail.com",
-//     position: "success",
-//     annualRevenue: "success",
-//     classType: "success",
-//   },
-// ];
 
 //表单格式
 export type RegisterForm = {
@@ -102,160 +54,7 @@ export type RegisterForm = {
   user?: string;
 };
 
-// //展示row数据格式
-// export const columns: ColumnDef<RegisterForm>[] = [
-//   {
-//     id: "select",
-//     header: ({ table }) => (
-//       <Checkbox
-//         checked={
-//           table.getIsAllPageRowsSelected() ||
-//           (table.getIsSomePageRowsSelected() && "indeterminate")
-//         }
-//         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-//         aria-label="Select all"
-//       />
-//     ),
-//     cell: ({ row }) => (
-//       <Checkbox
-//         checked={row.getIsSelected()}
-//         onCheckedChange={(value) => row.toggleSelected(!!value)}
-//         aria-label="Select row"
-//       />
-//     ),
-//     enableSorting: false,
-//     enableHiding: false,
-//   },
-//   // 客户姓名
-//   {
-//     accessorKey: "name",
-//     header: "客户姓名",
-//     cell: ({ row }) => <div className="lowercase">{row.getValue("name")}</div>,
-//   },
-//   // 客户邮箱
-//   {
-//     accessorKey: "email",
-//     header: ({ column }) => {
-//       return (
-//         <Button
-//           variant="ghost"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           客户邮箱
-//           <ArrowUpDown className="ml-2 h-4 w-4" />
-//         </Button>
-//       );
-//     },
-//     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-//   },
-//   // 企业名称
-//   {
-//     accessorKey: "companyName",
-//     header: ({ column }) => {
-//       return (
-//         <Button
-//           variant="ghost"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           企业名称
-//           <ArrowUpDown className="ml-2 h-4 w-4" />
-//         </Button>
-//       );
-//     },
-//     cell: ({ row }) => (
-//       <div className="lowercase">{row.getValue("companyName")}</div>
-//     ),
-//   },
-//   // 企业年营收
-//   {
-//     accessorKey: "annualRevenue",
-//     header: ({ column }) => {
-//       return (
-//         <Button
-//           variant="ghost"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           企业年营收
-//           <ArrowUpDown className="ml-2 h-4 w-4" />
-//         </Button>
-//       );
-//     },
-//     cell: ({ row }) => (
-//       <div className="lowercase">{row.getValue("annualRevenue")}</div>
-//     ),
-//   },
-//   // 行业
-//   {
-//     accessorKey: "position",
-//     header: ({ column }) => {
-//       return (
-//         <Button
-//           variant="ghost"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           行业
-//           <ArrowUpDown className="ml-2 h-4 w-4" />
-//         </Button>
-//       );
-//     },
-//     cell: ({ row }) => (
-//       <div className="lowercase">{row.getValue("position")}</div>
-//     ),
-//   },
-//   // 报名课程
-//   {
-//     accessorKey: "classType",
-//     header: ({ column }) => {
-//       return (
-//         <Button
-//           variant="ghost"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           报名课程
-//           <ArrowUpDown className="ml-2 h-4 w-4" />
-//         </Button>
-//       );
-//     },
-//     cell: ({ row }) => (
-//       <div className="lowercase">{row.getValue("classType")}</div>
-//     ),
-//   },
-//   // actions
-//   {
-//     id: "actions",
-//     enableHiding: false,
-//     cell: ({ row }) => {
-//       const registerForm = row.original;
-
-//       // 处理删除数据
-//       const handleDelete = async (id: string) => {
-//         const res = await deleteRegsiter(id, adminEmail);
-//         console.log(res);
-//         setData((currentData) => currentData.filter((item) => item.id !== id));
-//       };
-
-//       return (
-//         <DropdownMenu>
-//           <DropdownMenuTrigger asChild>
-//             <Button variant="ghost" className="h-8 w-8 p-0">
-//               <span className="sr-only">Open menu</span>
-//               <MoreHorizontal className="h-4 w-4" />
-//             </Button>
-//           </DropdownMenuTrigger>
-//           <DropdownMenuContent align="end">
-//             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-//             <DropdownMenuItem onClick={() => Delete(registerForm.id)}>
-//               删除该条数据
-//             </DropdownMenuItem>
-//             {/* <DropdownMenuSeparator /> */}
-//           </DropdownMenuContent>
-//         </DropdownMenu>
-//       );
-//     },
-//   },
-// ];
-
-export default function registerForm() {
+export default function RegisterForm() {
   const { toast } = useToast();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -430,6 +229,29 @@ export default function registerForm() {
     // }
     setData((currentData) => currentData.filter((item) => item.id !== id));
     console.log(res);
+    // 204: “删除成功”
+    if (res.status === 204) {
+      toast({
+        title: "删除成功",
+        description: "该条数据已经删除",
+      });
+    }
+    // 404: "删除失败，未找到"
+    if (res.status === 404) {
+      toast({
+        variant: "destructive",
+        title: "删除失败",
+        description: "未找到，无返回",
+      });
+    }
+    // 400: "删除失败，权限不够"
+    if (res.status === 400) {
+      toast({
+        variant: "destructive",
+        title: "删除失败",
+        description: "权限不够",
+      });
+    }
   };
 
   // useState表单数据

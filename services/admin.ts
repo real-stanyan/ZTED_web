@@ -33,4 +33,41 @@ const adminRegister = async (adminRegister: AdminRegister) => {
   }
 };
 
-export { adminLogin, adminRegister };
+// 获取管理员列表
+const getAdminList = async (adminEmail: string) => {
+  try {
+    const req = await fetch(
+      `http://localhost:8080/ZTED/allAdmins?adminEmail=${adminEmail}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    const status = req.status;
+    const req_json = await req.json();
+    return { ...req_json, status };
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+//删除管理员
+const deleteAdmin = async (email: string, adminEmail: string) => {
+  try {
+    const req = await fetch(
+      `http://localhost:8080/ZTED/administrator/${email}?adminEmail=${adminEmail}`,
+      {
+        method: "delete",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    console.log(req);
+
+    return req;
+  } catch (e) {
+    console.log(e);
+    return { status: 500 };
+  }
+};
+
+export { adminLogin, adminRegister, getAdminList, deleteAdmin };

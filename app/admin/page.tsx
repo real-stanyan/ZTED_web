@@ -53,7 +53,7 @@ export default function Admin() {
     if (adminName !== "") {
       router.push("/admin/dashboard");
     }
-  }, []);
+  }, [adminName]);
 
   // 处理管理员登陆
   const handleLogin = async () => {

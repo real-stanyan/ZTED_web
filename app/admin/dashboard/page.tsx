@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 import Link from "next/link";
 
 // import from zustand
@@ -10,6 +11,8 @@ import useAdmin from "@/stores/useAdmin";
 // import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
+  const { toast } = useToast();
+
   const router = useRouter();
   const adminName = useAdmin((state) => state.admin.username);
 
@@ -17,8 +20,18 @@ export default function Dashboard() {
   useEffect(() => {
     if (adminName === "") {
       router.push("/admin");
+      toast({
+        variant: "destructive",
+        title: "登陆过期",
+        description: "请重新登陆",
+      });
+    } else {
+      toast({
+        title: "登陆成功",
+        description: `欢迎回来,${adminName}`,
+      });
     }
-  });
+  }, [adminName]);
   return (
     <div className="w-full h-[90vh] flex flex-col items-center text-[white]">
       <h1 className="font-formal text-[black] text-center text-[3vw] my-[2vw]">

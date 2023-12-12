@@ -1,3 +1,4 @@
+//获取注册表单
 const getRegisterForm = async (adminEmail: string) => {
   try {
     const req = await fetch(
@@ -15,6 +16,7 @@ const getRegisterForm = async (adminEmail: string) => {
   }
 };
 
+//删除注册表单
 const deleteRegsiter = async (id: string, adminEmail: string) => {
   try {
     const req = await fetch(
@@ -26,9 +28,7 @@ const deleteRegsiter = async (id: string, adminEmail: string) => {
     );
     console.log(req);
 
-    const status = req.status;
-    const req_json = await req.json();
-    return { ...req_json, status };
+    return req;
   } catch (e) {
     console.log(e);
     return { status: 500 };
