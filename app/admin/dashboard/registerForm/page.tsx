@@ -62,8 +62,6 @@ export default function RegisterForm() {
   const [rowSelection, setRowSelection] = useState({});
   const adminEmail = useAdmin((state) => state.admin.email);
 
-  console.log(adminEmail);
-
   //展示row数据格式
   const columns: ColumnDef<RegisterForm>[] = [
     {
@@ -216,8 +214,6 @@ export default function RegisterForm() {
 
   // 处理删除数据
   const handleDelete = async (id: string) => {
-    console.log(adminEmail);
-
     const res = await deleteRegsiter(id, adminEmail);
     //为什么会处理为访问http，localhost:8080/ZTED/registration/123?adminEmail=302，我的adminEmail是123
 
@@ -228,7 +224,6 @@ export default function RegisterForm() {
     //   });
     // }
     setData((currentData) => currentData.filter((item) => item.id !== id));
-    console.log(res);
     // 204: “删除成功”
     if (res.status === 204) {
       toast({
@@ -282,14 +277,10 @@ export default function RegisterForm() {
           // 如果还有其他字段需要重命名或转换，也可以在这里添加
         }));
 
-      console.log(array);
-
       setData(array);
     }
     fetchData(adminEmail);
   }, []);
-
-  console.log(data);
 
   const table = useReactTable({
     data,
@@ -334,8 +325,6 @@ export default function RegisterForm() {
               .filter((column) => column.getCanHide())
 
               .map((column) => {
-                console.log(column.id);
-
                 let TansName;
                 switch (column.id) {
                   case "name":

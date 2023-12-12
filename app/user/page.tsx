@@ -20,6 +20,11 @@ import { userLogin, userRegister } from "@/services/user";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function User() {
+  const emailRegex =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const phoneRegex =
+    /^(13[0-9]|14[5-9]|15[0-3,5-9]|16[6]|17[0-8]|18[0-9]|19[8,9])\d{8}$/;
+
   const { toast } = useToast();
   const email = useUser((state) => state.email);
   const username = useUser((state) => state.username);
@@ -36,10 +41,19 @@ export default function User() {
     confirmPassword: "",
   });
 
+  //处理验证邮箱格式
+  function validateEmail(email: string) {
+    return emailRegex.test(email.toLowerCase());
+  }
+
+  //处理验证手机号格式
+  function validatePhone(phone: string) {
+    return phoneRegex.test(phone);
+  }
+
   // 用户登陆
   const handleLogin = async () => {
     const res = await userLogin(login);
-    console.log(res);
     // 200:"用户登陆成功"
     if (res.status === 200) {
       setEmail(res.email);
@@ -76,12 +90,74 @@ export default function User() {
 
   // 用户注册
   const handleRegister = async () => {
+    // 如果表单为空
+    if (
+      register.name === "" ||
+      register.email === "" ||
+      register.phoneNum === "" ||
+      register.password === "" ||
+      register.confirmPassword === ""
+    ) {
+      toast({
+        variant: "destructive",
+        title: "注册失败",
+        description: "表格未填写完成",
+      });
+      return;
+    }
+
+    // 如果邮箱格式错误
+    if (!validateEmail(register.email)) {
+      toast({
+        variant: "destructive",
+        title: "注册失败",
+        description: "邮箱格式错误",
+      });
+      return;
+    }
+    // 如果手机号格式错误
+    if (!validatePhone(register.phoneNum)) {
+      toast({
+        variant: "destructive",
+        title: "注册失败",
+        description: "手机号格式错误",
+      });
+      return;
+    }
+
+    // 如果密码少于6位
+    if (register.password.length < 6) {
+      toast({
+        variant: "destructive",
+        title: "注册失败",
+        description: "密码少于6位",
+      });
+      return;
+    }
+
     const res = await userRegister(register);
-    console.log(res);
+
+    // "200": "用户注册成功"
     if (res === 200) {
       toast({
         title: "注册成功",
         description: "请前往登陆界面登入账户",
+      });
+    }
+    // "400": "两次密码输入不匹配"
+    if (res === 400) {
+      toast({
+        variant: "destructive",
+        title: "注册失败",
+        description: "两次密码输入不匹配",
+      });
+    }
+    // "404": "该邮箱已被注册"
+    if (res === 404) {
+      toast({
+        variant: "destructive",
+        title: "注册失败",
+        description: "该邮箱已被注册",
       });
     }
   };
@@ -135,7 +211,12 @@ export default function User() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button onClick={handleLogin}>登陆</Button>
+                <Button
+                  onClick={handleLogin}
+                  className="py-[1vw] px-[2vw] text-[1.5vw]"
+                >
+                  登陆
+                </Button>
               </CardFooter>
             </Card>
           </TabsContent>
@@ -204,7 +285,12 @@ export default function User() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button onClick={handleRegister}>注册</Button>
+                <Button
+                  onClick={handleRegister}
+                  className="py-[1vw] px-[2vw] text-[1.5vw]"
+                >
+                  注册
+                </Button>
               </CardFooter>
             </Card>
           </TabsContent>

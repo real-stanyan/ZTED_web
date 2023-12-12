@@ -59,8 +59,6 @@ export default function AdminList() {
   const [rowSelection, setRowSelection] = useState({});
   const adminEmail = useAdmin((state) => state.admin.email);
 
-  console.log(adminEmail);
-
   //展示row数据格式
   const columns: ColumnDef<AdminList>[] = [
     {
@@ -162,13 +160,10 @@ export default function AdminList() {
 
   // 处理删除数据
   const handleDelete = async (email: string) => {
-    console.log(adminEmail);
-
     const res = await deleteAdmin(email, adminEmail);
     setData((currentData) =>
       currentData.filter((item) => item.email !== email)
     );
-    console.log(res);
     // 204: “删除成功”
     if (res.status === 204) {
       toast({
@@ -216,14 +211,10 @@ export default function AdminList() {
           ...item,
         }));
 
-      console.log(array);
-
       setData(array);
     }
     fetchData(adminEmail);
   }, []);
-
-  console.log(data);
 
   const table = useReactTable({
     data,
@@ -268,8 +259,6 @@ export default function AdminList() {
               .filter((column) => column.getCanHide())
 
               .map((column) => {
-                console.log(column.id);
-
                 let TansName;
                 switch (column.id) {
                   case "name":

@@ -19,6 +19,7 @@ module.exports = {
       fontFamily: {
         formal: ["Noto Sans SC", "sans-serif"],
         chinese: ["Ma Shan Zheng", "cursive"],
+        form: ["ZCOOL QingKe HuangYou", "cursive"],
       },
       backgroundImage: {
         "header-bg": "url(/header_bg.jpg)",

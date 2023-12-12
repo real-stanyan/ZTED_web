@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 import {
   ColumnDef,
@@ -17,8 +17,11 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
+//倒入shadcn组件库
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/components/ui/use-toast";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -28,7 +31,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -37,24 +39,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useToast } from "@/components/ui/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 import { getUserList, deleteUser } from "@/services/user";
 
 import useAdmin from "@/stores/useAdmin";
 
 //表单格式
-// export type RegisterForm = {
-//   id: string;
-//   companyName: string;
-//   name: string;
-//   email: string;
-//   position: string;
-//   annualRevenue: string;
-//   classType: string;
-//   user?: string;
-// };
-
 export type UserList = {
   name: string;
   email: string;
@@ -68,9 +69,14 @@ export default function UserList() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-  const adminEmail = useAdmin((state) => state.admin.email);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  console.log(adminEmail);
+  const adminEmail = useAdmin((state) => state.admin.email);
+  const openDialog = () => setIsDialogOpen(true);
+  const confirmDelete = (email: string) => {
+    handleDelete(email);
+    setIsDialogOpen(false); // Close dialog after confirming
+  };
 
   //展示row数据格式
   const columns: ColumnDef<UserList>[] = [
@@ -169,7 +175,7 @@ export default function UserList() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => handleDelete(userList.email)}>
+              <DropdownMenuItem onClick={openDialog}>
                 删除该条数据
               </DropdownMenuItem>
               {/* <DropdownMenuSeparator /> */}
@@ -182,13 +188,10 @@ export default function UserList() {
 
   // 处理删除数据
   const handleDelete = async (userEmail: string) => {
-    console.log(adminEmail);
-
     const res = await deleteUser(userEmail, adminEmail);
     setData((currentData) =>
       currentData.filter((item) => item.email !== userEmail)
     );
-    console.log(res);
     // 204: “删除成功”
     if (res.status === 204) {
       toast({
@@ -235,14 +238,10 @@ export default function UserList() {
           ...item,
         }));
 
-      console.log(array);
-
       setData(array);
     }
     fetchData(adminEmail);
   }, []);
-
-  console.log(data);
 
   const table = useReactTable({
     data,
@@ -287,8 +286,6 @@ export default function UserList() {
               .filter((column) => column.getCanHide())
 
               .map((column) => {
-                console.log(column.id);
-
                 let TansName;
                 switch (column.id) {
                   case "name":

@@ -29,6 +29,9 @@ import { useRouter } from "next/navigation";
 import { adminLogin, adminRegister } from "@/services/admin";
 
 export default function Admin() {
+  const emailRegex =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   const { userLogout } = useUser();
   // const adminName = useAdmin((state) => state.username);
   const { setEmail, setName, setPosition } = useAdmin();
@@ -55,6 +58,11 @@ export default function Admin() {
     }
   }, [adminName]);
 
+  //处理验证邮箱格式
+  function validateEmail(email: string) {
+    return emailRegex.test(email.toLowerCase());
+  }
+
   // 处理管理员登陆
   const handleLogin = async () => {
     if (login.email === "" || login.password === "") {
@@ -66,6 +74,7 @@ export default function Admin() {
       return;
     }
     const req = await adminLogin(login);
+    // "200": "管理员登陆成功";
     if (req.status === 200) {
       setEmail(req.email);
       setName(req.currentUser);
@@ -73,13 +82,39 @@ export default function Admin() {
       toast({
         title: `欢迎回来，${req.currentUser}老板`,
       });
-      // router.push("/admin/dashboard");
+      router.push("/admin/dashboard");
     }
-    console.log(req);
+    // "404": "密码错误";
+    if (req.status === 404) {
+      toast({
+        variant: "destructive",
+        title: "登陆失败",
+        description: "密码错误",
+      });
+    }
+
+    // "429": "请一分钟后再尝试"
+    if (req.status === 429) {
+      toast({
+        variant: "destructive",
+        title: "登陆失败",
+        description: "请一分钟后再尝试",
+      });
+    }
+
+    // "400": "请稍后再试"
+    if (req.status === 400) {
+      toast({
+        variant: "destructive",
+        title: "登陆失败",
+        description: "请稍后再试",
+      });
+    }
   };
 
   // 处理管理员注册
   const handleRegister = async () => {
+    // 如果表单为空
     if (
       register.name === "" ||
       register.email === "" ||
@@ -94,17 +129,51 @@ export default function Admin() {
       });
       return;
     }
-    const res = await adminRegister(register);
-    console.log(res);
-    // 200: "管理员注册成功";
-    if (res.code === 200) {
+
+    // 如果用户名长度不足2位
+    if (register.name.length < 2) {
       toast({
-        title: "Scheduled: Catch up",
-        description: "Friday, February 10, 2023 at 5:57 PM",
+        variant: "destructive",
+        title: "注册失败",
+        description: "用户名长度不足2位",
+      });
+      return;
+    }
+
+    // 如果邮箱格式错误
+    if (!validateEmail(register.email)) {
+      toast({
+        variant: "destructive",
+        title: "注册失败",
+        description: "邮箱格式错误",
+      });
+      return;
+    }
+
+    // 如果密码少于6位
+    if (register.password.length < 6) {
+      toast({
+        variant: "destructive",
+        title: "注册失败",
+        description: "密码少于6位",
+      });
+      return;
+    }
+
+    const res = await adminRegister(register);
+    console.log("RES: ", res);
+
+    // 200: "管理员注册成功";
+    if (res.status === 200) {
+      console.log("成功");
+
+      toast({
+        title: "注册成功",
+        description: "请前往登陆选项进行登陆",
       });
     }
     // 400:"两次密码输入不匹配"
-    if (res.code === 400) {
+    if (res.status === 400) {
       toast({
         variant: "destructive",
         title: "注册失败",
@@ -112,7 +181,7 @@ export default function Admin() {
       });
     }
     // 404:"注册邮箱已存在"
-    if (res.code === 404) {
+    if (res.status === 404) {
       toast({
         variant: "destructive",
         title: "注册失败",
@@ -120,7 +189,7 @@ export default function Admin() {
       });
     }
     // 403:"Register failed _"
-    if (res.code === 403) {
+    if (res.status === 403) {
       toast({
         variant: "destructive",
         title: "注册失败",

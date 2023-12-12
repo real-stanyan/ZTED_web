@@ -165,10 +165,10 @@ export default function Header() {
           {!isLogin && !isAdmin && (
             <Button
               variant="outline"
-              className="bg-[#8e0804] text-[white] mr-[1vw]"
+              className="bg-[#8e0804] text-[white] mr-[1vw] p-[1vw]"
               onClick={() => router.push("/user")}
             >
-              用户登陆
+              <h1>用户登陆</h1>
             </Button>
           )}
 

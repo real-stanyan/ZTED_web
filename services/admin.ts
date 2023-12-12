@@ -61,7 +61,6 @@ const deleteAdmin = async (email: string, adminEmail: string) => {
         headers: { "Content-Type": "application/json" },
       }
     );
-    console.log(req);
 
     return req;
   } catch (e) {

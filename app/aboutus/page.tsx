@@ -26,7 +26,6 @@ export default function Culture() {
       if (geoRef.current) {
         const rect = geoRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 300) {
           setShown(geoRef.current.title);
           setOpacity("opacity-100");
@@ -35,7 +34,6 @@ export default function Culture() {
       if (historyRef.current) {
         const rect = historyRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 300) {
           setShown(historyRef.current.title);
           setOpacity("opacity-100");
@@ -44,7 +42,6 @@ export default function Culture() {
       if (spotRef.current) {
         const rect = spotRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(spotRef.current.title);
           setOpacity("opacity-100");
@@ -53,7 +50,6 @@ export default function Culture() {
       if (hometownRef.current) {
         const rect = hometownRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(hometownRef.current.title);
           setOpacity("opacity-100");
@@ -62,7 +58,6 @@ export default function Culture() {
       if (hometown2Ref.current) {
         const rect = hometown2Ref.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(hometown2Ref.current.title);
           setOpacity("opacity-100");
@@ -71,7 +66,6 @@ export default function Culture() {
       if (zhiyongRef.current) {
         const rect = zhiyongRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(zhiyongRef.current.title);
           setOpacity("opacity-100");
@@ -80,7 +74,6 @@ export default function Culture() {
       if (houdaoRef.current) {
         const rect = houdaoRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(houdaoRef.current.title);
           setOpacity("opacity-100");
@@ -89,7 +82,6 @@ export default function Culture() {
       if (fendouRef.current) {
         const rect = fendouRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(fendouRef.current.title);
           setOpacity("opacity-100");
@@ -98,7 +90,6 @@ export default function Culture() {
       if (hongseRef.current) {
         const rect = hongseRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(hongseRef.current.title);
           setOpacity("opacity-100");
@@ -107,7 +98,6 @@ export default function Culture() {
       if (dameiRef.current) {
         const rect = dameiRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(dameiRef.current.title);
           setOpacity("opacity-100");
@@ -116,7 +106,6 @@ export default function Culture() {
       if (chucaiRef.current) {
         const rect = chucaiRef.current.getBoundingClientRect();
         const distanceFromTopOfViewport = rect.top;
-        // console.log(distanceFromTopOfViewport);
         if (distanceFromTopOfViewport < 50) {
           setShown(chucaiRef.current.title);
           setOpacity("opacity-100");

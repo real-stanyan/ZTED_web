@@ -56,7 +56,6 @@ export default function Enroll() {
     }
     // 发送报名信息
     const res = await enroll(userinfo);
-    console.log(res);
     // 200:"报名成功"
     if (res.status === 200) {
       reset();

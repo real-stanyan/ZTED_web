@@ -22,7 +22,6 @@ const userRegister = async (userInfo: UserRegister) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInfo),
     });
-    console.log(req.status);
     return req.status;
   } catch (e) {
     console.log(e);
@@ -57,7 +56,6 @@ const deleteUser = async (userEmail: string, adminEmail: string) => {
         headers: { "Content-Type": "application/json" },
       }
     );
-    console.log(req);
 
     return req;
   } catch (e) {
