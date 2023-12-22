@@ -152,6 +152,13 @@ export default function Header() {
                 <DropdownMenuContent>
                   <DropdownMenuItem
                     onClick={() => {
+                      router.push("/admin/dashboard");
+                    }}
+                  >
+                    前往控制台
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => {
                       adminLogout();
                     }}
                   >
